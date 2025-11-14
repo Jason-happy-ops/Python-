@@ -18,3 +18,7 @@ hint: have locally. This is usually caused by another repository pushing to
 hint: the same ref. If you want to integrate the remote changes, use
 我仔细思考了一下，这是因为我在Github上修改了readme文件而这个修改没有保存在我的本地，两边更新不同。所以solution就是先git pull origin master
 拉取远程仓库的更新，再git push origin master
+
+Day 4 11.14    外星人飞船
+今天做了向左向右的飞船操控，这个外星人飞船的项目要告一段落了，里面pygame库的功能都不太了解，学起来很吃力。但在四天总共快20h（加上水课啃概念）
+的积累下也是对类的使用有了一点基本的了解，也是为我的半途而废找个借口吧。接下来会去学习数据分析库了，加油！
