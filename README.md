@@ -74,4 +74,7 @@ Day 13 2025.12.1
 哈哈哈哈十二月第一段代码结束了地震散点图。今天引入pandas库，不用再麻烦从列表中取出数据给绘图函数了，现在可以直接在封装数据的DataFrame中读取列名
 也算属于一种优化吧。color='震级'表示用渐变色表示震级的不同大小。
 
+Day 14 2025.12.3
+第一次API的学习，应用程序接口。真的很神奇啊，只要几行代码你就会得到想要的数据。https://api.github.com/search/repositories?q=language:python+sort:stars+stars:>10000
+用这个网址搜索star大于10000的项目。自己去了解了json数据的优点，简洁易懂以字典的形式去展示。用application/+json将其转为json格式
 
