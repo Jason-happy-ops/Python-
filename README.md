@@ -101,3 +101,5 @@ Day 19 2025.12.13
 Day 20 2025.12.14
 继续写正则化表达式。以下是简化步骤：1.import re导入模块    2.re.compile()函数创建一个Regex对象（使用原始字符串）
 3.向Regex对象的search()方法传入想查找的字符串，它返回一个Match对象。    4.调用Match对象的group()方法，返回实际匹配文本的字符串
+
+特殊符号记得\转义，出现missing or unbalanced parenthesis 的错误信息可能忘记为分组添加括号
