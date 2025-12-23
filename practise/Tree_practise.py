@@ -1,4 +1,5 @@
 from sklearn.datasets import load_iris
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.tree import DecisionTreeRegressor, export_graphviz
 from sklearn.metrics import accuracy_score, confusion_matrix, r2_score
 from sklearn.model_selection import GridSearchCV
@@ -28,7 +29,7 @@ grid_param = {'max_depth':[1,2,3,4,5],
 'criterion':['squared_error','friedman_mse','absolute_error']}
 
 
-grid_dt = GridSearchCV(DecisionTreeRegressor(random_state=42),grid_param,cv=5)          #这个随机种子是用来控制决策树训练过程的
+grid_dt = GridSearchCV(RandomForestRegressor(n_estimators=150,random_state=42),grid_param,cv=5)          #这个随机种子是用来控制决策树训练过程的
 
 grid_dt.fit(X_train,Y_train)         #用全部数据训练
 

@@ -7,6 +7,8 @@ from sklearn.tree import plot_tree
 from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.model_selection import GridSearchCV
 
+from sklearn.ensemble import RandomForestClassifier
+
 iris = load_iris()          #本身自带150个样本
 X = iris.data       #4个花的特征
 Y = iris.target     #3类鸢尾花
@@ -66,3 +68,10 @@ grid = GridSearchCV(DecisionTreeClassifier(random_state=42),
 grid.fit(X_train,Y_train)
 print(f"最优参数组合：{grid.best_params_}")
 print(f"最优参数下的交叉验证分数：{grid.best_score_:.3f}")
+
+
+rf = GridSearchCV(RandomForestClassifier(n_estimators=100,random_state = 11),param_grid,cv=5)
+rf.fit(X_train,Y_train)
+pred_rf = rf.predict(new_sample)
+
+print("预测结果（类别编号）：",pred[0])
