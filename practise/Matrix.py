@@ -25,13 +25,13 @@ class AHP:
     def test_consist(self):
         #打印矩阵的一致性指标CI和一致性比例CR
         print("判断矩阵的CI值为:",self.CI_val)
-        print("判断矩阵的CR值为:",self.CR_val)
+        
 
         if self.n == 2 : #当只有两个子因素时不包含一致性问题
             print("仅包含两个子因素,不存在一致性问题")
         else:
-            if self.CR_cal < 0.1:
-                print("判断矩阵的CR值为\n",self.CR_val)
+            if self.CR_val < 0.1:
+                print("判断矩阵的CR值为:",self.CR_val)
                 print("通过一致性检验")
                 return True
 
@@ -90,9 +90,10 @@ if __name__ == "__main__":
 
     #算术平均法求权重
     weight1 = AHP(b).cal_weight_by_arithemic_method()
-
+    panduan1 = AHP(b).test_consist()
     #几何平均法求权重
     weight2 = AHP(b).cal_weight_by_geometric_method()
-
+    panduan2 = AHP(b).test_consist()
     #特征值法求权重
     weight3 = AHP(b).cal_weight_by_eigenvalue_method()
+    panduan3 = AHP(b).test_consist()
