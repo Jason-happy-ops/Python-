@@ -11,9 +11,22 @@ def sum_list(list):
 
     return list[0]+sum_list(list[1:])
 
-if __name__=="__main__":
-    sum1=sum_array([1,2,3,4])
-    print(sum1)
 
-    sum2=sum_list([3,4,5,6])
-    print(sum2)
+def way_num(n):
+    if n<=2:
+        return n 
+    else:
+        return way_num(n-1)+way_num(n-2)
+    
+def way_num2(n, memo=None):
+    if n in memo:
+        return memo[n]
+    if n<=2:
+        return n
+    else:
+        memo[n] = way_num2(n-1, memo) + way_num2(n-2, memo)
+        print(memo)
+        return memo[n]
+if __name__ == "__main__":
+    a=way_num2(5, {})
+    print(a)
