@@ -27,3 +27,17 @@ df['列名'] = pd.to_numeric(df['列名'], errors='coerce')
 
 #描述性统计
 print(df.describe())
+
+#z-score判断异常值
+col = '关键列列名'
+data = df[col].dropna()
+mean = np.mean(data)
+std = np.std(data,ddof=1)#样本标准差
+z_scores = (data - mean) / std
+#判断异常值
+outliers = data[np.abs(z_scores) > 3]
+cleaned_data = data[np.abs(z_scores) <= 3]
+#异常值可视化
+plt.boxplot(data, flierprops=dict(marker='o', color='red'))  # 箱线图，红点=异常值
+plt.title(f"{col} 异常值可视化")
+plt.show()

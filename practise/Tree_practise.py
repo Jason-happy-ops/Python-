@@ -25,7 +25,7 @@ Y_nongdu = df.loc[:,"Y染色体浓度"]
 X_train,X_test,Y_train,Y_test = train_test_split(BMI_data,Y_nongdu,test_size=0.2,random_state=42)     #这个随机种子是控制测试集训练集的
 # 目标是连续值，使用回归树而不是分类树
 
-grid_param = {'max_depth':[1,2,3,4,5],
+grid_param = {'max_depth':[1,2,3,4,5],#特征较多防止欠拟合
 'criterion':['squared_error','friedman_mse','absolute_error']}
 
 
