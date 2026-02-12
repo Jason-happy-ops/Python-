@@ -198,5 +198,5 @@ Day 35 2026.2.11
 文件路径，这个文件路径是特殊的所以就可以加入init函数，在其中就可以写下self.path = path。当然如果类中的都是通用的函数，例如通用工具类，里面加减乘除函数就可以没有init函数。
 
 Day 36 2026.2.12
-主要更新了一下pandas的那个文件，进阶学习了处理缺失值，mean()平均值 median()中位数 mode()众数处理缺失值，需要注意的是，在使用inplace方法时，inplace = True修改的是内存中的dataframe，实际的excel
-需要to_excel才能被修改
+主要更新了一下pandas的那个文件，进阶学习了处理缺失值和归一化标准化。mean()平均值 median()中位数 mode()众数处理缺失值，需要注意的是，在使用inplace方法时，inplace = True修改的是内存中的dataframe，
+实际的excel需要to_excel才能被修改。然后从sklearn库里面导入StandardScaler ,MinMaxScaler这两个工具就可以，第一个标准化第二个归一化。
