@@ -200,3 +200,7 @@ Day 35 2026.2.11
 Day 36 2026.2.12
 主要更新了一下pandas的那个文件，进阶学习了处理缺失值和归一化标准化。mean()平均值 median()中位数 mode()众数处理缺失值，需要注意的是，在使用inplace方法时，inplace = True修改的是内存中的dataframe，
 实际的excel需要to_excel才能被修改。然后从sklearn库里面导入StandardScaler ,MinMaxScaler这两个工具就可以，第一个标准化第二个归一化。
+
+Day 37 2026.2.13
+把数据处理那个文件改成了面向对象的clean_data类，下设多个函数。在init中定义了self.df = pd.read_excel(r"")，那为什么要使用self的方法很重要呢？因为df只是 __init__ 方法内部的临时变量，__init__ 执行完，
+这个 df 就被销毁了其他函数就无法访问了
