@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.preprocessing import StandardScaler ,MinMaxScaler  #归一化和标准化工具
+import seaborn as sns
 
 class clean_data():
     def __init__(self,Path):
@@ -12,12 +13,14 @@ class clean_data():
 
 
 
-    def data_summary(self,core_cols):
+    def data_summary(self,core_cols=None):
         #输出行名，列名
-        print("="*50)
-        print(self.df.columns.tolist())
-        print("="*50)
-        print(self.df.index.tolist())
+        a = input("是否查看行列名 0:no 1:yes:")
+        if a=="1":
+            print("="*50)
+            print(self.df.columns.tolist())
+            print("="*50)
+            print(self.df.index.tolist())
 
 
         #打印数据情况
@@ -27,13 +30,17 @@ class clean_data():
         print(self.df.isnull().sum())
 
         #填充缺失值
-        x = self.df[core_cols].mean()
+        c = input("是否填充缺失值 0:no 1:yes:")
 
-        self.df = self.df.fillna(x,inplace=False)     # inplace=True直接修改原数据，False返回新数据
-        self.df = self.df.dropna()
+        if c=="1":
 
-        #将某列转为数值列，errors='coerce'将非法值转为 NaN
-        self.df[core_cols] = pd.to_numeric(self.df[core_cols], errors='coerce')
+            x = self.df[core_cols].mean()
+
+            self.df = self.df.fillna(x,inplace=False)     # inplace=True直接修改原数据，False返回新数据
+            self.df = self.df.dropna()
+
+            #将某列转为数值列，errors='coerce'将非法值转为 NaN
+            self.df[core_cols] = pd.to_numeric(self.df[core_cols], errors='coerce')
 
         #描述性统计
         print(self.df.describe())
@@ -54,13 +61,6 @@ class clean_data():
         self.df[core_cols] = scaler2.fit_transform(self.df[[core_cols]])   
         df_toexcel = self.df.copy()  # 复制数据以保存原始数据
         df_toexcel.to_excel(path, index=False)       #不包含行索引
-        
-    def data_process3(self,core_cols):    
-        #分行的归一化
-        groups = [(0,4),(5,12),(13,20)]  
-        for start,end in groups:
-            scaler1 = MinMaxScaler()
-            self.df.loc[start:end,core_cols] = scaler1.fit_transform(self.df.loc[start:end,[core_cols]])
 
 
     def z_score_outlier(self,core_cols):
@@ -77,3 +77,22 @@ class clean_data():
         plt.boxplot(data, flierprops=dict(marker='o', color='red'))  # 箱线图，红点=异常值
         plt.title(f"{col} 异常值可视化")
         plt.show()
+
+
+    def spearman_outlier(self,core_cols):
+        #斯皮尔曼系数
+        spearman_correlation = self.df[core_cols].corr(method='spearman')
+        print("斯皮尔曼相关系数：")
+        print(spearman_correlation)
+
+    def matrix(self,core_cols):
+        #相关矩阵
+        correlation_matrix = self.df[core_cols].corr()
+        print("相关矩阵：")
+        print(correlation_matrix)
+
+    def correlation_heatmap(self,core_cols):
+        #相关性热图
+        plt.figure(figsize=(10,8))
+        sns.heatmap(self.df[core_cols].corr(),cmap="#5DCF2C",annot=True #显示数值
+                   ,robust=True)
