@@ -215,3 +215,10 @@ Day 39 2026.2.23
 
 Day 39 2026.2.23
 T属性可以把行列反转
+
+Day 40 2026.3.1
+觉得应该把pandas更进一步的学习，然后拿2026C题的表格训练，当时比赛的时候数据处理这一部分做的有点稀里糊涂的。第一步删N/A值的时候用链式就踩了inplace=True的坑，inplace=True是在原数据上修改
+返回的是None空值而链式表达式的要求就是前一步返回可以调用的dataframe，所以调用链式应该使用inplace=False。然后说一下我的数据处理思路，首先这个列表难处理的在于star节目有34季每一季选手数量
+和评委数量都不一样，所以我先用groupby按season分组，分34个季度，然后在每一周的数据里面做归一化。然后在自己写一个groupby链式用apply的时候就出问题了，先是显示 Boolean array expected for the 
+condition,not float 64。我看了一下，其实apply传的是一个二维datafarame然而我的类clean_data则需要传入一个文件路径那么如果用lambada去写又传df又传路径参数就传多了。那么lambda有什么作用呢
+我其实还没有深入了解。所以我在这里只是在apply中将其作为匿名函数使用，这次传参很成功。补充：core_cols在我的归一化函数里面是一个一维数组，所以需要在iloc后面加上colunms.tolist转为一维数组。
