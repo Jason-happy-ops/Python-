@@ -50,17 +50,19 @@ class clean_data():
     def data_process1(self,core_cols):
         #归一化
         scaler1 = MinMaxScaler()
-        self.df[core_cols] = scaler1.fit_transform(self.df[[core_cols]])
+        self.df[core_cols] = scaler1.fit_transform(self.df[core_cols])
         df_toexcel = self.df.copy()  # 复制数据以保存原始数据
-        df_toexcel.to_excel(r"", index=False)       #不包含行索引
+        return df_toexcel
+        
 
 
-    def data_process2(self,core_cols,path):
+    def data_process2(self,core_cols):
         #标准化
         scaler2 = StandardScaler()
-        self.df[core_cols] = scaler2.fit_transform(self.df[[core_cols]])   
+        self.df[core_cols] = scaler2.fit_transform(self.df[core_cols])   
         df_toexcel = self.df.copy()  # 复制数据以保存原始数据
-        df_toexcel.to_excel(path, index=False)       #不包含行索引
+        return df_toexcel
+        
 
 
     def z_score_outlier(self,core_cols):
