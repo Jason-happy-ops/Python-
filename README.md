@@ -222,3 +222,6 @@ Day 40 2026.3.1
 和评委数量都不一样，所以我先用groupby按season分组，分34个季度，然后在每一周的数据里面做归一化。然后在自己写一个groupby链式用apply的时候就出问题了，先是显示 Boolean array expected for the 
 condition,not float 64。我看了一下，其实apply传的是一个二维datafarame然而我的类clean_data则需要传入一个文件路径那么如果用lambada去写又传df又传路径参数就传多了。那么lambda有什么作用呢
 我其实还没有深入了解。所以我在这里只是在apply中将其作为匿名函数使用，这次传参很成功。补充：core_cols在我的归一化函数里面是一个一维数组，所以需要在iloc后面加上colunms.tolist转为一维数组。
+
+Day 41 2026.3.2
+今天好不容易输出个像样的结果，但是检查归一化的时候发现好像有哪里不对劲。原来是在写归一化函数的时候，我直接把python自带的MinMaxScaler拿过来用了
